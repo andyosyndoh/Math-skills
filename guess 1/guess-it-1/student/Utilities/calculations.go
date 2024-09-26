@@ -5,8 +5,8 @@ import "math"
 // Average calculates the mean of the inputs.
 func Average(numbers []float64) float64 {
 	var total float64
-	for i := 0; i < len(numbers); i++ {
-		total += numbers[i]
+	for _, ch := range numbers {
+		total += ch
 	}
 	output := total / float64(len(numbers))
 
@@ -22,11 +22,11 @@ func StandardDev(numbers []float64) float64 {
 
 //Variance calculates the variance of the inputs.
 func Variance(numbers []float64) float64 {
-	var differences []float64
-	for i := 0; i < len(numbers); i++ {
-		dif := numbers[i] - Average(numbers)
-		differences = append(differences, dif*dif)
+	var differences float64
+	avg := Average(numbers)
+	for _, ch := range numbers {
+		differences += (ch - avg) * (ch - avg)
 	}
-	result := Average(differences)
-	return (result)
+	// result := Average(differences)
+	return differences / float64(len(numbers))
 }
